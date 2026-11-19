@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1024">
+  <meta name="description" content="Explore the ideas, people and possibilities behind the evolving ELLE OS constellation.">
+  <title>The Constellation of Influence · Interactive concept</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090e21;--surface:#151b33;--muted:#bac3dc;--gold:#f1ca85;--line:#43516f;--focus:#bde8ff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 65% 15%,#202b57 0,#10182e 32%,var(--bg) 73%);color:#f4f3f6}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(#fff 0.7px,transparent 0.9px);background-size:41px 43px;mask-image:linear-gradient(180deg,#000,transparent 93%)}
+    button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+    a{color:var(--gold)}.skip{position:absolute;top:-6rem;left:1rem;padding:.8rem;background:#fff;color:#10182e;z-index:20}.skip:focus{top:1rem}
+    .shell{max-width:1440px;margin:auto;padding:0 clamp(1rem,3vw,3rem)}header{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid #ffffff24}
+    .brand{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:750}.status{font-size:.76rem;color:var(--muted);border:1px solid #ffffff30;padding:.45rem .8rem;border-radius:999px}
+    .intro{max-width:900px;padding:clamp(2rem,5vw,4.4rem) 0 1rem}.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem}
+    h1{font-family:Georgia,serif;font-size:clamp(2.65rem,6.6vw,6.5rem);font-weight:400;line-height:1.05;letter-spacing:-.045em;margin:.7rem 0 1rem}h1 em{color:var(--gold);font-style:normal}
+    .lede{color:#d7daea;font-size:clamp(1rem,1.3vw,1.17rem);line-height:1.75;max-width:650px}.meta{color:var(--muted);font-size:.8rem;margin:1.7rem 0}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(275px,340px);gap:1.25rem;padding:1.4rem 0 4rem}
+    .explorer,.detail{background:#121a31d9;border:1px solid #ffffff27;border-radius:18px;box-shadow:0 15px 60px #0002;overflow:hidden}
+    .toolbar{padding:1.1rem 1.2rem;border-bottom:1px solid #ffffff22;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;justify-content:space-between}
+    .toolbar h2{font:400 1.2rem Georgia,serif;margin:0}.switch{display:flex;gap:.3rem;background:#070d1f;padding:.3rem;border-radius:12px}
+    .switch button,.filters button{color:#d7deef;background:transparent;border:1px solid transparent;border-radius:9px;padding:.5rem .75rem;font-size:.84rem}
+    .switch button[aria-pressed=true],.filters button[aria-pressed=true]{background:#34425d;color:#fff;border-color:#6e7c9d}
+    .controls{display:flex;gap:.75rem;flex-wrap:wrap;padding:1rem 1.2rem}.search{flex:1;min-width:190px;width:100%;background:#0a1127;color:#fff;border:1px solid #65708c;border-radius:10px;padding:.7rem 1rem}
+    .filters{display:flex;gap:.3rem;flex-wrap:wrap}.filters button{border-color:#5c6986}
+    .universe{position:relative;min-height:480px;margin:0 1.2rem 1.2rem;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at center,#26325b55,transparent 60%),#0b1228;border:1px solid #ffffff1c}
+    .connections{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.connections line{stroke:#a2b1d2;stroke-width:.25;opacity:.35}.star{position:absolute;transform:translate(-50%,-50%);min-width:90px;max-width:140px;border:0;background:transparent;color:#e6eafa;padding:.35rem;text-align:center;font-size:.77rem;line-height:1.25}
+    .star .orb{display:block;margin:0 auto .6rem;width:16px;height:16px;background:#f4d59b;box-shadow:0 0 0 5px #f8d8981a,0 0 24px #f4d59b8a;border-radius:50%;transition:transform .15s}
+    .star:hover .orb,.star[aria-pressed=true] .orb{transform:scale(1.5);background:#fff;box-shadow:0 0 0 6px #ebc47b44,0 0 30px #ffe6b5}
+    .star[hidden],.timeline-item[hidden]{display:none}.empty{color:#f2d9b0;padding:1rem 1.5rem}.timeline{display:grid;gap:.65rem;padding:1.2rem}
+    .timeline-item{background:#19243f;color:#f7f7f9;border:1px solid #52617e;border-radius:11px;text-align:left;padding:1rem;display:flex;gap:.9rem;align-items:start}
+    .timeline-item:hover,.timeline-item[aria-pressed=true]{border-color:var(--gold);background:#283655}.timeline-item small{display:block;color:var(--muted);padding-top:.3rem;line-height:1.5}
+    .timeline-number{color:var(--gold);font-variant-numeric:tabular-nums}
+    .detail{padding:1.5rem;align-self:start;min-height:410px}.detail .tag{color:var(--gold);font-size:.72rem;letter-spacing:.17em;text-transform:uppercase}.detail h2{font:400 2rem Georgia,serif;line-height:1.15;margin:1.2rem 0}
+    .detail p{color:#d6dced;line-height:1.72;font-size:.96rem}.detail .note{margin-top:2rem;padding-top:1rem;border-top:1px solid #ffffff25;color:var(--muted);font-size:.79rem}
+    .detail .related{margin-top:1.6rem}.detail .related h3{font-size:.85rem;font-weight:600;color:var(--muted)}
+    .detail .related button{display:block;text-align:left;width:100%;color:#f7e1b4;border:1px solid #5b6680;border-radius:8px;background:#1b2540;padding:.65rem .8rem;margin:.5rem 0}
+    .detail .related button:hover{background:#313c59}.foot{border-top:1px solid #ffffff25;padding:2rem 0;color:var(--muted);font-size:.83rem}
+    [hidden]{display:none!important}
+    @media(max-width:850px){.workspace{grid-template-columns:1fr}.universe{min-height:450px}.detail{min-height:0}}
+    @media(max-width:490px){header{flex-wrap:wrap}.universe{margin:0 .7rem .7rem;min-height:390px}.star{min-width:65px;max-width:85px;font-size:.65rem}.star .orb{width:13px;height:13px}.controls,.toolbar{padding:.9rem}.intro{padding-top:2rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.star .orb{transition:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the constellation</a>
+  <div class="shell">
+    <header><div class="brand">✦ Elle OS / Steve · Creative exploration</div><span class="status">Concept prototype · Sample stories</span></header>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow">One spark. Infinite possibilities.</div>
+      <h1 id="page-title">The Constellation <em>of Influence</em></h1>
+      <p class="lede">Ideas rarely travel alone. Explore the connections between human creativity, technology and the moments that change what becomes possible.</p>
+      <p class="meta">Choose a star, search an idea or switch to the list view. The stories below are illustrative placeholders, not verified milestones.</p>
+    </section>
+    <main id="main" class="workspace">
+      <section class="explorer" aria-label="Explore the constellation">
+        <div class="toolbar"><h2>Explore the universe</h2><div class="switch" role="group" aria-label="Exploration view"><button id="mapMode" aria-pressed="true" type="button">✧ Constellation</button><button id="listMode" aria-pressed="false" type="button">☷ List view</button></div></div>
+        <div class="controls"><label for="search" class="sr-only" style="position:absolute;left:-10000px">Search constellations</label><input class="search" id="search" type="search" placeholder="Search ideas and stories…" autocomplete="off"><div class="filters" role="group" aria-label="Filter themes"><button data-filter="all" aria-pressed="true" type="button">All</button><button data-filter="people" aria-pressed="false" type="button">People</button><button data-filter="technology" aria-pressed="false" type="button">Technology</button><button data-filter="creativity" aria-pressed="false" type="button">Creativity</button></div></div>
+        <div id="mapView" class="universe" aria-label="Constellation map. Select any star to read its story"><svg class="connections" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" id="links"></svg><div id="stars"></div></div>
+        <div id="listView" class="timeline" hidden aria-label="Constellations as an accessible list"></div>
+        <p id="noResults" class="empty" role="status" hidden>No stories match. Try another search or theme.</p>
+      </section>
+      <aside id="detail" class="detail" aria-label="Selected star story" aria-live="polite" aria-atomic="true"><div class="tag" id="detailTag">Start exploring</div><h2 id="detailTitle">Every connection has a story.</h2><p id="detailBody">Select any star to reveal its theme, connections and possibilities. Use the list view for an alternative to the spatial map.</p><div id="related" class="related" hidden><h3>Connected stories</h3><div id="relatedButtons"></div></div><p class="note">Prototype content only. Historical claims and artefacts should be verified before publication.</p></aside>
+    </main>
+    <footer class="foot">✦ The constellation is never finished. <span>Designed as an exploratory prototype for the ELLE OS vision.</span></footer>
+  </div>
+  <script>
+    "use strict";
+    // Illustrative content only. Replace with source-verified entries before publication.
+    const entries = [
+      {id:"origin",name:"The Origin",theme:"people",x:50,y:49,description:"A single gesture can begin an unexpected journey. This is the intended starting point for the story of how a gift became a catalyst for exploration.",related:["elle","human","possibilities"]},
+      {id:"elle",name:"ELLE OS",theme:"technology",x:27,y:23,description:"The evolving personal AI system at the heart of the narrative. Future entries can describe its verified capabilities, milestones and design decisions.",related:["origin","architecture","discoveries"]},
+      {id:"architecture",name:"The Architecture",theme:"technology",x:73,y:20,description:"A place to explore the systems, workflows, interfaces and technical ideas that support an expanding creative ecosystem.",related:["elle","discoveries","possibilities"]},
+      {id:"human",name:"The Human Connection",theme:"people",x:17,y:65,description:"Personal influence, collaboration and generosity help explain why technological projects begin and why they matter.",related:["origin","creative","infinite"]},
+      {id:"creative",name:"The Creative Universe",theme:"creativity",x:43,y:82,description:"Music, visual storytelling, design and playful experimentation bring new dimensions to the constellation.",related:["human","discoveries","infinite"]},
+      {id:"discoveries",name:"The Discoveries",theme:"technology",x:78,y:70,description:"A future archive of experiments, lessons and breakthroughs, with supporting evidence where it is available.",related:["elle","architecture","creative"]},
+      {id:"possibilities",name:"The Possibilities",theme:"creativity",x:86,y:42,description:"Emerging projects and ideas live here, clearly distinguished from completed work and established history.",related:["origin","architecture","infinite"]},
+      {id:"infinite",name:"The Infinite",theme:"creativity",x:61,y:92,description:"The unexplored space. An invitation to imagine the next connection without mistaking possibility for fact.",related:["human","creative","possibilities"]}
+    ];
+    const byId = new Map(entries.map(entry => [entry.id,entry]));
+    const stars = document.getElementById("stars");
+    const list = document.getElementById("listView");
+    const links = document.getElementById("links");
+    const search = document.getElementById("search");
+    const empty = document.getElementById("noResults");
+    let filter = "all", selected = null, mode = "map";
+    function visible(entry){const term=search.value.trim().toLocaleLowerCase();return (filter==="all"||entry.theme===filter)&&(!term||(entry.name+" "+entry.description).toLocaleLowerCase().includes(term))}
+    function makeButton(entry,layout){
+      const button=document.createElement("button");button.type="button";button.dataset.id=entry.id;
+      button.setAttribute("aria-pressed",String(selected===entry.id));
+      if(layout==="star"){
+        button.className="star";button.style.left=entry.x+"%";button.style.top=entry.y+"%";
+        const orb=document.createElement("span");orb.className="orb";orb.setAttribute("aria-hidden","true");button.append(orb);
+        button.append(document.createTextNode(entry.name));
+      } else {
+        button.className="timeline-item";
+        const num=document.createElement("span");num.className="timeline-number";num.textContent=String(entries.indexOf(entry)+1).padStart(2,"0");
+        const label=document.createElement("span");label.textContent=entry.name;
+        const subtitle=document.createElement("small");subtitle.textContent=entry.description;label.append(subtitle);
+        button.append(num,label);
+      }
+      button.addEventListener("click",()=>select(entry.id));
+      return button;
+    }
+    function draw(){
+      stars.replaceChildren();list.replaceChildren();links.replaceChildren();
+      const shown=entries.filter(visible);
+      for(const entry of shown){stars.append(makeButton(entry,"star"));list.append(makeButton(entry,"list"))}
+      const unique=new Set();
+      for(const entry of shown){for(const id of entry.related){const target=byId.get(id);if(!target||!shown.includes(target))continue;const key=[entry.id,id].sort().join(":");if(unique.has(key))continue;unique.add(key);const line=document.createElementNS("http://www.w3.org/2000/svg","line");line.setAttribute("x1",entry.x);line.setAttribute("y1",entry.y);line.setAttribute("x2",target.x);line.setAttribute("y2",target.y);links.append(line)}}
+      empty.hidden=shown.length>0;
+      // A filtered-out selection must not leave stale details behind.
+      if(selected&&!shown.some(item=>item.id===selected)){selected=null;showDetail(null)}
+    }
+    function showDetail(entry){
+      document.getElementById("detailTag").textContent=entry?entry.theme+" · constellation":"Start exploring";
+      document.getElementById("detailTitle").textContent=entry?entry.name:"Every connection has a story.";
+      document.getElementById("detailBody").textContent=entry?entry.description:"Select any star to reveal its theme, connections and possibilities. Use the list view for an alternative to the spatial map.";
+      const container=document.getElementById("relatedButtons");container.replaceChildren();
+      document.getElementById("related").hidden=!entry;
+      if(!entry)return;
+      for(const id of entry.related){const target=byId.get(id);if(!target)continue;const button=document.createElement("button");button.type="button";button.textContent=target.name;button.addEventListener("click",()=>{filter="all";search.value="";syncFilters();select(id);document.getElementById("detail").scrollIntoView({block:"nearest",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"})});container.append(button)}
+    }
+    function select(id){const entry=byId.get(id);if(!entry)return;selected=id;showDetail(entry);draw();}
+    function syncFilters(){document.querySelectorAll("[data-filter]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.filter===filter)))}
+    function setMode(next){mode=next;document.getElementById("mapView").hidden=mode!=="map";list.hidden=mode!=="list";document.getElementById("mapMode").setAttribute("aria-pressed",String(mode==="map"));document.getElementById("listMode").setAttribute("aria-pressed",String(mode==="list"))}
+    document.getElementById("mapMode").addEventListener("click",()=>setMode("map"));
+    document.getElementById("listMode").addEventListener("click",()=>setMode("list"));
+    document.querySelectorAll("[data-filter]").forEach(button=>button.addEventListener("click",()=>{filter=button.dataset.filter;syncFilters();draw()}));
+    search.addEventListener("input",draw);
+    draw();
+  </script>
+</body>
+</html>
