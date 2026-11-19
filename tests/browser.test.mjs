@@ -95,3 +95,23 @@ for (const view of ['map','list']) {
     } finally {await context.close();}
   });
 }
+
+
+for (const width of [320,390]) {
+  test('visible star hit areas remain distinct at '+width+'px', async () => {
+    const {context,page}=await open({viewport:{width,height:750}});
+    try {
+      const rects=await page.locator('#stars button:visible').evaluateAll(nodes=>
+        nodes.map(node=>({name:node.textContent.trim(),r:node.getBoundingClientRect().toJSON()}))
+      );
+      for(let i=0;i<rects.length;i++)for(let j=i+1;j<rects.length;j++){
+        const a=rects[i].r,b=rects[j].r;
+        const overlapWidth=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left));
+        const overlapHeight=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+        assert.equal(overlapWidth*overlapHeight,0,
+          'Overlapping touch targets: '+rects[i].name+' and '+rects[j].name+
+          ' ('+overlapWidth.toFixed(1)+' x '+overlapHeight.toFixed(1)+'px)');
+      }
+    } finally{await context.close();}
+  });
+}
