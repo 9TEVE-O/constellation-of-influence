@@ -16,7 +16,7 @@ permissions:
 jobs:
   prototype-checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -26,5 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run dependency-free UI checks
+      - name: Run dependency-free source checks
         run: node --test tests/prototype.test.mjs
+      - name: Install isolated browser test tools
+        run: npm install --no-save --no-package-lock playwright@1.56.1 @axe-core/playwright@4.10.2
+      - name: Install Chromium for browser tests
+        run: npx playwright install --with-deps chromium
+      - name: Run browser and accessibility checks
+        run: node --test tests/browser.test.mjs
