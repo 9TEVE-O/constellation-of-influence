@@ -1,0 +1,30 @@
+name: Prototype UI checks
+
+on:
+  push:
+    branches:
+      - 'experiment/**'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'tests/**'
+      - '.github/workflows/prototype-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  prototype-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run dependency-free UI checks
+        run: node --test tests/prototype.test.mjs
